@@ -1,0 +1,23 @@
+response.text
+
+
+
+
+CREATE VIEW my_aggregate_data_view AS
+SELECT
+    ou.name AS organization_unit,
+    e.uid AS element_uid,
+    e.name AS element_name,
+    dv.periode_id AS periode_id
+    dv.value as valm
+    dv.category_option_combo_name as category_name,
+    dv.category_option_uid as category_option_uid
+FROM
+    datavalue dv
+JOIN
+    org_unit ou ON dv.sourceid = ou.uid
+JOIN
+    element e ON dv.element_id = e.id
+
+ORDER BY element_name, periode_id ASC 
+
